@@ -15,7 +15,7 @@ return [
     'country_ar' => 'المملكة العربية السعودية',
     'country_en' => 'Saudi Arabia',
 
-    'phone' => '0548327194',
+    'phone' => '0576578705',
     'phone_intl' => '+966576578705',
     'whatsapp' => '966576578705',
     'whatsapp_url' => 'https://api.whatsapp.com/send?phone=966576578705',
