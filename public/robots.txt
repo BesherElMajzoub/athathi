@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://athathi.sa/sitemap.xml
+Sitemap: https://athathi.com/sitemap.xml
 
 # Block admin area
 Disallow: /admin/
@@ -9,6 +9,3 @@ Disallow: /api/
 
 # Block search pages
 Disallow: /*?*
-
-# Crawl-delay
-Crawl-delay: 1
