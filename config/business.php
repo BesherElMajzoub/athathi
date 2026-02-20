@@ -16,9 +16,9 @@ return [
     'country_en' => 'Saudi Arabia',
 
     'phone' => '0576578705',
-    'phone_intl' => '+966576578705',
-    'whatsapp' => '966576578705',
-    'whatsapp_url' => 'https://api.whatsapp.com/send?phone=966576578705',
+    'phone_intl' => '+966542574015',
+    'whatsapp' => '966542574015',
+    'whatsapp_url' => 'https://api.whatsapp.com/send?phone=966542574015',
     'email' => 'info@athathi-jeddah.com',
 
     'address_ar' => 'جدة، المملكة العربية السعودية',
