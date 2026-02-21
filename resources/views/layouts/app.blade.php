@@ -31,12 +31,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    @php
+        // قيم افتراضية (تقدر تغيرهم حسب كل صفحة إذا عندك SEO ديناميكي)
+        $ogTitle = $title ?? 'نشتري جميع الأثاث المستعمل بجدة بأعلى سعر';
+        $ogDesc = $desc ?? 'نجيك فوراً للبيت، نفك وننقل، وندفع كاش بنفس اليوم. تواصل معنا الآن واستلم عرض سعر سريع.';
+        $ogUrl = $url ?? url()->current();
+
+        // الصورة موجودة عندك داخل assets/img
+        // مهم: asset() يعطي رابط كامل إذا APP_URL مضبوط في .env
+        $ogImage = $ogImage ?? asset('assets/img/og-image.webp');
+    @endphp
+
+    {{-- Open Graph (WhatsApp / Facebook) --}}
+    <meta property="og:locale" content="ar_SA">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Athathii | شراء أثاث مستعمل جدة">
+    <meta property="og:title" content="{{ $ogTitle }}">
+    <meta property="og:description" content="{{ $ogDesc }}">
+    <meta property="og:url" content="{{ $ogUrl }}">
+
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:image:secure_url" content="{{ $ogImage }}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="شراء أثاث مستعمل بجدة - Athathii">
+
+    {{-- Twitter Card (مفيد لنفس صورة المعاينة) --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $ogTitle }}">
+    <meta name="twitter:description" content="{{ $ogDesc }}">
+    <meta name="twitter:image" content="{{ $ogImage }}">
     {{-- Tajawal Arabic Font --}}
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap"
         rel="stylesheet">
 
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/img/logo.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/img/logo.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo.ico') }}">
     @stack('head')
 </head>
 
