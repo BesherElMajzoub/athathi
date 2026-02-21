@@ -35,9 +35,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap"
         rel="stylesheet">
 
-    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/img/logo.ico') }}">
-    <link rel="apple-touch-icon" href="{{ asset('assets/img/logo.ico') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/img/logo.ico') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('img/logo.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('img/logo.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo.ico') }}">
     @stack('head')
 </head>
 
