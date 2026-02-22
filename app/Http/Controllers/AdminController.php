@@ -15,6 +15,12 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
+        $clickRange = (int) request()->query('range', 0);
+        $allowedRanges = [0, 1, 7, 30];
+        if (! in_array($clickRange, $allowedRanges, true)) {
+            $clickRange = 0;
+        }
+
         // Visit stats
         $totalVisits = Visit::count();
         $todayVisits = Visit::whereDate('created_at', today())->count();
@@ -45,7 +51,19 @@ class AdminController extends Controller
 
         // Click stats
         $totalClicks = Click::count();
-        $topButtons = Click::select('button_id', 'button_label', DB::raw('COUNT(*) as clicks'))
+        $topButtonsQuery = Click::query();
+        if ($clickRange > 0) {
+            $topButtonsQuery->where('created_at', '>=', now()->subDays($clickRange));
+        }
+
+        $topButtons = $topButtonsQuery
+            ->select(
+                'button_id',
+                'button_label',
+                DB::raw('COUNT(*) as clicks'),
+                DB::raw('MAX(created_at) as last_click_at'),
+                DB::raw('MIN(created_at) as first_click_at')
+            )
             ->groupBy('button_id', 'button_label')
             ->orderByDesc('clicks')
             ->limit(20)
@@ -69,7 +87,7 @@ class AdminController extends Controller
         return view('admin.dashboard', compact(
             'totalVisits', 'todayVisits', 'weekVisits', 'monthVisits',
             'topPages', 'referrerSources', 'deviceStats',
-            'totalClicks', 'topButtons',
+            'totalClicks', 'topButtons', 'clickRange',
             'recentVisits',
             'districtPagesTotal', 'districtPagesPublished', 'districtPagesDraft',
             'dailyVisits'

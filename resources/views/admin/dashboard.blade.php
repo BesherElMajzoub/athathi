@@ -176,6 +176,31 @@
             color: #fff;
         }
 
+        .filter-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .filter-links a {
+            color: #BBCB2E;
+            text-decoration: none;
+            padding: 6px 12px;
+            border: 1px solid #2a2b36;
+            border-radius: 999px;
+            transition: 0.2s;
+        }
+
+        .filter-links a:hover,
+        .filter-links a.active {
+            background: #6B7445;
+            color: #fff;
+        }
+
         .overflow-x {
             overflow-x: auto;
         }
@@ -251,6 +276,17 @@
             {{-- Top Buttons --}}
             <div class="card">
                 <h2 class="section-title">أكثر الأزرار نقراً</h2>
+                <div class="filter-links">
+                    <span>المدة:</span>
+                    <a href="{{ request()->fullUrlWithQuery(['range' => 1]) }}"
+                        class="{{ $clickRange === 1 ? 'active' : '' }}">اليوم</a>
+                    <a href="{{ request()->fullUrlWithQuery(['range' => 7]) }}"
+                        class="{{ $clickRange === 7 ? 'active' : '' }}">7 أيام</a>
+                    <a href="{{ request()->fullUrlWithQuery(['range' => 30]) }}"
+                        class="{{ $clickRange === 30 ? 'active' : '' }}">30 يوم</a>
+                    <a href="{{ request()->fullUrlWithQuery(['range' => 0]) }}"
+                        class="{{ $clickRange === 0 ? 'active' : '' }}">الكل</a>
+                </div>
                 <div class="overflow-x">
                     <table class="data-table">
                         <thead>
@@ -258,6 +294,7 @@
                                 <th>الزر</th>
                                 <th>التسمية</th>
                                 <th>النقرات</th>
+                                <th>آخر نقرة</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -266,6 +303,7 @@
                                     <td>{{ $btn->button_id }}</td>
                                     <td>{{ \Illuminate\Support\Str::limit($btn->button_label, 30) }}</td>
                                     <td class="count">{{ number_format($btn->clicks) }}</td>
+                                    <td title="{{ $btn->last_click_at ? \Illuminate\Support\Carbon::parse($btn->last_click_at)->format('Y-m-d H:i') : '' }}">{{ $btn->last_click_at ? \Illuminate\Support\Carbon::parse($btn->last_click_at)->diffForHumans() : '-' }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
