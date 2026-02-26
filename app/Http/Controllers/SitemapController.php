@@ -101,6 +101,8 @@ class SitemapController extends Controller
 
         $xml .= "</urlset>\n";
 
-        return response($xml, 200)->header('Content-Type', 'application/xml; charset=UTF-8');
+        return response($xml, 200)
+            ->header('Content-Type', 'application/xml; charset=UTF-8')
+            ->header('Cache-Control', 'public, max-age=3600');
     }
 }

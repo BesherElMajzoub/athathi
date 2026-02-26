@@ -88,7 +88,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'admin' => [
-        'token' => env('ADMIN_TOKEN', 'athathi-admin-202'),
+        'token' => env('ADMIN_TOKEN', 'athathi-admin-2024'),
         'dashboard_path' => 'admin/dashboard',
     ],
 
